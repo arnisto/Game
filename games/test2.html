@@ -1,0 +1,63 @@
+
+<html>
+    <head>
+      <script src="p5.min.js"></script>
+      <script>
+   
+    var bubbles =[];
+    function setup(){
+        createCanvas(600,400);
+       
+    }
+    function draw(){
+        background(0);
+        for(var i=0;i<bubbles.length;i++){
+        bubbles[i].move();
+        bubbles[i].display();
+        bubbles[i].lifetime--;
+        if(bubbles[i].lifetime < 0){
+            bubbles.splice(i,1);
+        }
+        }
+        if(bubbles.length > 10){
+            bubbles.splice(0,1);
+        }
+    }
+    function mouseDragged(){
+        bubbles.push(new Bubble(mouseX,mouseY));
+    }
+    function keyPressed(){
+        for (var i=0;i<bubbles.length;i++){
+            bubbles[i].clicked();
+        }
+    }
+    function Bubble(xx,yy){
+        this.x = xx;
+        this.y=yy;
+        this.col = color(255,100);
+        this.lifetime = 255;
+        this.display = function () {
+            stroke(255);
+        strokeWeight(4);
+        fill(this.col);
+        ellipse(this.x,this.y,24,24);
+        };
+        this.move = function() {
+            this.x = this.x + random(-1,1);
+        this.y = this.y + random(-1,1);
+        };
+        this.clicked = function(){
+            var d = dist(mouseX,mouseY,this.x,this.y);
+            if(d < 24){
+            this.col = color(255,0,255);
+            }
+        }
+    }
+   
+      </script>
+    </head>
+    <body>
+      <main>
+      </main>
+    </body>
+  </html>

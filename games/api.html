@@ -1,0 +1,45 @@
+
+<html>
+    <head>
+      <script src="p5.min.js"></script>
+      <script>
+   var dropzone;
+   var issX = 0;
+   var issY = 0;
+   var aaaa = 0;
+   function setup(){
+        createCanvas(600,400);
+        setInterval(askISS,1000);
+     
+   }
+   function askISS(){
+    loadJSON("http://api.open-notify.org/iss-now.json",gotData,'jsonp');
+    print('reload data from the api'+aaaa);
+    aaaa++;
+   
+   }
+   function gotData(data){
+        var lat = data.iss_position.latitude;
+        var long = data.iss_position.longitude;
+        issY = map(long,-90,90,0,600);
+        issX = map(lat,-90,90,0,400);
+       //for zooming
+       // issY = map(long,-55,-30,0,600);
+       // issX = map(lat,25,40,0,400);
+   
+       
+   }
+  function draw(){
+        background(0);
+        fill(255,0,255);
+        ellipse(issX,issY,24,24);
+        stroke(255);
+  }
+
+      </script>
+      
+    </head>
+    <body>
+    
+    </body>
+  </html>

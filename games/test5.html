@@ -1,0 +1,41 @@
+
+<html>
+    <head>
+      <script src="p5.min.js"></script>
+      <script>
+   var bgcolor;
+   var button;
+   var slider;
+   var input;
+   function setup(){
+       canvas = createCanvas(600,400);
+       bgcolor = color(255);
+       button = createButton("gogogogogo");
+       button.mousePressed(changeColor);
+       slider = createSlider(10,100,45);
+       input = createInput('put your name');
+       input.mouseOver(func);
+       function func(){
+         alert('ok');
+       }
+       
+   }
+   function draw(){
+       background(bgcolor);
+       fill(255,0,255);
+       rect(100,100,slider.value(),slider.value());
+       text(input.value(),10,10);
+   }
+
+   
+ function changeColor(){
+ 
+   bgcolor = color(random(255));
+ }
+   
+      </script>
+    </head>
+    <body>
+      <h1>lamjed gaidi</h1>
+    </body>
+  </html>

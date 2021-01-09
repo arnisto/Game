@@ -1,0 +1,44 @@
+
+<html>
+    <head>
+      <script src="p5.min.js"></script>
+      <script>
+   var dropzone;
+   function setup(){
+       canvas = createCanvas(600,400);
+       background(0);
+       dropzone = select('#dropzone');
+       dropzone.dragOver(highlight);
+       dropzone.dragLeave(unhighlight);
+       dropzone.drop(gotFile);
+   }
+   function highlight(){
+       dropzone.style('background-color','#ccc');
+   }
+   function unhighlight(){
+       dropzone.style('background-color','#fff');
+   }
+   function gotFile(file){
+       var img = createImg(file.data);
+       img.hide();
+       image(img,0,0,width,height);
+   }
+
+
+      </script>
+      <style>
+          #dropzone{
+              padding:24px;
+              border-style:dashed;
+              font-size:36pt;
+              width:50%;
+          }
+      </style>
+    </head>
+    <body>
+      <h1>lamjed gaidi</h1>
+      <p id="dropzone">
+          drag your file here
+      </p>
+    </body>
+  </html>

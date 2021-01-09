@@ -1,0 +1,69 @@
+
+<html>
+    <head>
+      <script src="p5.min.js"></script>
+      <script>
+   var b1;
+   var b2;
+   function setup(){
+       canvas = createCanvas(600,400);
+       bgcolor = color(255);
+       b1 = new Bubble(250,200);
+       b2 = new Bubble(350,200);
+       
+   }
+   function draw(){
+       background(0);
+       b1.move();
+       b1.display();
+       b2.move();
+       b2.display();
+
+
+if(b1.intersects(b2)){
+    b1.changeColor();
+    b2.changeColor();
+}
+   }
+   function Bubble(xx,yy){
+        this.x = xx;
+        this.y=yy;
+       this.r=48;
+       this.col = color(255)
+       this.changeColor = function(){
+           this.col = color(random(255),random(255),random(255));
+
+       };
+       this.intersects = function (other){
+           var d = dist(this.x,this.y,other.x,other.y);
+           if(d <this.r+other.r){
+               return true;
+           }else{
+               return false;
+           }
+       }
+
+        this.display = function () {
+            stroke(255);
+            strokeWeight(4);
+            fill(this.col);
+            ellipse(this.x,this.y,this.r*2,this.r*2);
+        };
+        this.move = function() {
+            this.x = this.x + random(-1,1);
+            this.y = this.y + random(-1,1);
+        };
+       
+    }
+   
+ function mousePressed(){
+ 
+   bgcolor = color(random(255));
+ }
+   
+      </script>
+    </head>
+    <body>
+      <h1>lamjed gaidi</h1>
+    </body>
+  </html>
